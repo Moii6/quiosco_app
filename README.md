@@ -1,6 +1,7 @@
 ## Lista de utilidades agregadas a este proyecto
 
 proyecto creado con Next js
+
 prisma
 axios
 swr
