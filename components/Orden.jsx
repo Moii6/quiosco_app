@@ -3,7 +3,7 @@ import axios from "axios";
 import Image from "next/image";
 import React from "react";
 import { toast } from "react-toastify";
-
+/**Componente para mostrar una orden, utilizado en el perfil de admnistrador */
 export default function Orden(orden) {
   const { id, nombre, total, pedido } = orden.orden;
 

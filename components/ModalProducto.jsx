@@ -2,13 +2,16 @@ import useQuiosco from "@/hooks/useQuiosco";
 import { formatoDinero } from "@/utils";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
-
+/**Muestra la informacion de los productos que provienen de las categorias */
 const ModalProducto = () => {
   const { producto, handleChangeModal, handleAgregarOrden, pedido } =
     useQuiosco();
   const [cantidad, setCantidad] = useState(1);
   const [isEdited, setIsEdited] = useState(false);
 
+  /**Es necesario para actualizar la cantidad de un producto
+   * y modificar el boton de agregar producto a guardar cambios
+   */
   useEffect(() => {
     if (pedido.some((pedidoSingle) => pedidoSingle.id === producto.id)) {
       const productoEditado = pedido.find((ped) => ped.id === producto.id);
@@ -17,6 +20,7 @@ const ModalProducto = () => {
     }
   }, [producto, pedido]);
 
+  /** Se utiliza para aumentar o disminuir la cantidad de los productos*/
   const modificarCantidad = (operacion) => {
     if (
       (cantidad <= 1) & (operacion === "minus") ||

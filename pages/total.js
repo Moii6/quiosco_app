@@ -3,19 +3,29 @@ import Layout from "@/layout/Layout";
 import { formatoDinero } from "@/utils";
 import { useCallback, useEffect, useState } from "react";
 
+/**
+ * Renderiza y controla los elementos de la pagina total
+ * @returns
+ */
 export default function Total() {
   const { total, nombre, buildNombrePedido, ordenar, pedido } = useQuiosco();
   const [isnombre, setIsNombre] = useState(false);
 
-  const comprobarPedido = useCallback(() => {
-    return pedido.length === 0 || nombre === "" || nombre.length < 3;
-  }, [pedido, nombre]);
-
+  /**Reliza la orden hacia la base de datos */
   const colocarPedido = (e) => {
     e.preventDefault();
     ordenar();
   };
+  /**
+   * Callback que comprueba las condiciones para generar un pedido
+   */
+  const comprobarPedido = useCallback(() => {
+    return pedido.length === 0 || nombre === "" || nombre.length < 3;
+  }, [pedido, nombre]);
 
+  /**
+   * se ejecuta cuando el pedido o el nombre cambian de valor
+   */
   useEffect(() => {
     comprobarPedido();
   }, [pedido, comprobarPedido]);

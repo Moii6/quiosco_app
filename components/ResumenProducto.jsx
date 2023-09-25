@@ -4,7 +4,9 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-
+/**
+ * Componente que muestra el resument de la orden
+ */
 const ResumenProducto = ({ producto }) => {
   const [subTotal, setSubTotal] = useState(0);
   const {
@@ -14,6 +16,9 @@ const ResumenProducto = ({ producto }) => {
   } = useQuiosco();
   const miAlerta = withReactContent(Swal);
 
+  /**
+   * Se utiliza oara el proceso de eliminar un producto de la orden
+   */
   const handleDelete = () => {
     miAlerta
       .fire({
@@ -29,6 +34,10 @@ const ResumenProducto = ({ producto }) => {
       });
   };
 
+  /**
+   * Cuando el producto cambia de valor
+   * calcula el subtotal
+   */
   useEffect(() => {
     setSubTotal(producto?.precio * producto?.cantidad);
   }, [producto]);

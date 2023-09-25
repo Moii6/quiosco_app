@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import React from "react";
-
+/**Componente que muestra la barra de navegacion y progreso */
 const pasos = [
   { paso: 1, nombre: "Menu", url: "/" },
   { paso: 2, nombre: "Resumen", url: "/resumen" },
@@ -10,6 +10,7 @@ const pasos = [
 const Pasos = () => {
   const router = useRouter();
 
+  /**Se utiliza para calcular el porcentaje de la barra de progreso */
   const calcularPorcentaje = () => {
     let porcentaje;
     switch (router.pathname) {

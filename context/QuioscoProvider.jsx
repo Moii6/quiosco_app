@@ -1,9 +1,13 @@
-import { createContext, useEffect, useState } from "react";
+import { Component, createContext, useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
 const QuioscoContext = createContext();
-
+/**
+ *
+ * @param {Component} children
+ * @returns todos los servicios que se necesitan para el funcionamiento de la app
+ */
 const QuioscoProvider = ({ children }) => {
   const [categorias, setCategorias] = useState([]);
   const [categoriaActual, setCategoriaActual] = useState({});
@@ -14,27 +18,42 @@ const QuioscoProvider = ({ children }) => {
   const [total, setTotal] = useState(0);
   const router = useRouter();
   //////////////////////////////////////////////FUNCIONES///////////////////////////
+  /**
+   * Obtiene las categorias desde la base de datos
+   */
   const obtenerCategorias = async () => {
     const { data } = await axios("/api/categorias");
     setCategorias(data);
   };
-
+  /**
+   * identifica que categoria se ha selccionado
+   * @param {Int} id identificador de la categoria seleccionada
+   */
   const handleClickCategoria = (id) => {
     const categoriaFiltrada = categorias.filter((cat) => cat.id === id);
     setCategoriaActual(categoriaFiltrada[0]);
     router.pathname != "/" && router.push("/");
   };
-
+  /**
+   * identifica el producto seleccionado
+   * @param {Object} producto objecto con la informacion del producto seleccionado
+   */
   const handleClickAgregarProducto = (producto) => {
     setProducto(producto);
   };
 
+  /**
+   * controla mla visibilidad del modal
+   */
   const handleChangeModal = () => {
     setModal(!modal);
   };
 
+  /**
+   * Agrega un producto a la orden
+   * @param {Object} producto Objecto con la informacion del producto que se quiere agregar a la orden
+   */
   const handleAgregarOrden = (producto) => {
-    console.log(producto);
     if (pedido.some((productoSingle) => productoSingle.id === producto.id)) {
       const pedidoActualizado = pedido.map((prod) =>
         prod.id === producto.id ? producto : prod
@@ -50,13 +69,19 @@ const QuioscoProvider = ({ children }) => {
     setModal(false);
   };
 
+  /**
+   * Elimina un producto de una orden
+   * @param {int} id identificador de un producto
+   */
   const handleEliminarElementoDeOrden = (id) => {
-    console.log(id);
     const pedidoActualizado = pedido.filter((producto) => producto.id !== id);
-    console.log(pedidoActualizado);
     setPedido(pedidoActualizado);
   };
 
+  /**
+   * setea el nombre del pedido
+   * @param {Event} e evento de un elemento del DOM
+   */
   const buildNombrePedido = (e) => {
     setNombre(e.target.value);
   };
@@ -82,10 +107,17 @@ const QuioscoProvider = ({ children }) => {
     }
   };
   /////////////////////////////////////////////USEEFFECT/////////////////////////////
+
+  /**
+   * Obtiene las categorias, se ejecuta cuando incia el componente
+   */
   useEffect(() => {
     obtenerCategorias();
   }, []);
 
+  /**
+   * Obtiene el total de la orden
+   */
   useEffect(() => {
     /*let total = 0;
     pedido.map((producto) => {
@@ -98,6 +130,9 @@ const QuioscoProvider = ({ children }) => {
     setTotal(nuevoTotal);
   }, [pedido]);
 
+  /**
+   * cuando las categorias cambian, selecicona la primera como la categoria default para mostrar
+   */
   useEffect(() => {
     setCategoriaActual(categorias[0]);
   }, [categorias]);

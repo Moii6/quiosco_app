@@ -3,6 +3,11 @@ import Image from "next/image";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+/**
+ * Se utiliza en /admin del proyecto
+ * @param {Component, String} param0 Compontente para renderizar, nombre de la pagina
+ * @returns
+ */
 export default function AdminLayout({ children, pagina }) {
   return (
     <>

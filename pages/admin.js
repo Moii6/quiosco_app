@@ -3,7 +3,10 @@ import AdminLayout from "@/layout/AdminLayuout";
 import axios from "axios";
 import React from "react";
 import useSWR from "swr";
-
+/**
+ *  retorna el AdminLayout component
+ * @returns
+ */
 export default function Admin() {
   const fetcher = () => axios("/api/ordenes").then((datos) => datos.data);
   const { data, error, isLoading } = useSWR("/api/ordenes", fetcher, {

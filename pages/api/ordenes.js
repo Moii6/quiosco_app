@@ -1,4 +1,9 @@
 import { PrismaClient } from "@prisma/client";
+/**
+ * Controla el servicio de get y post de las ordenes
+ * @param {*} req
+ * @param {*} res
+ */
 
 export default async function handler(req, res) {
   const prisma = new PrismaClient();

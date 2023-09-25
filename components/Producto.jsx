@@ -1,7 +1,7 @@
 import useQuiosco from "@/hooks/useQuiosco";
 import { formatoDinero } from "@/utils";
 import Image from "next/image";
-
+/**Componente que muestra un producto */
 const Producto = ({ producto }) => {
   const { nombre, imagen, precio } = producto;
   const { handleClickAgregarProducto, handleChangeModal } = useQuiosco();

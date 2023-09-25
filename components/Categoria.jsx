@@ -1,7 +1,7 @@
 import useQuiosco from "@/hooks/useQuiosco";
 import Image from "next/image";
 import React from "react";
-
+/**Componente par mostrar una categoria */
 function Categoria({ categoria }) {
   const { nombre, icono, id } = categoria;
   const { categoriaActual, handleClickCategoria } = useQuiosco();

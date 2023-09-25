@@ -1,6 +1,10 @@
 import { PrismaClient } from "@prisma/client";
 
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+/**
+ * Controla el servicio de get de los productos
+ * @param {*} req
+ * @param {*} res
+ */
 
 export default async function handler(req, res) {
   const prisma = new PrismaClient();

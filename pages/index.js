@@ -2,6 +2,11 @@ import Producto from "@/components/Producto";
 import useQuiosco from "@/hooks/useQuiosco";
 import Layout from "@/layout/Layout";
 
+/**
+ * muestra las paginas que se utilizan durante todo el proceso de la app
+ * tiene como base el header y sidebar
+ * @returns
+ */
 export default function Home() {
   const { categoriaActual } = useQuiosco();
   return (

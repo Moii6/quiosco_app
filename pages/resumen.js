@@ -2,6 +2,10 @@ import ResumenProducto from "@/components/ResumenProducto";
 import useQuiosco from "@/hooks/useQuiosco";
 import Layout from "@/layout/Layout";
 
+/**
+ * Renderuza los elementos de la pagina resumen
+ * @returns
+ */
 export default function Resumen() {
   const { pedido } = useQuiosco();
   return (

@@ -1,7 +1,10 @@
 import Image from "next/image";
 import useQuiosco from "../hooks/useQuiosco";
 import Categoria from "./Categoria";
-
+/**
+ *
+ * @returns retorna la vista del sidebar con las categorias
+ */
 const SideBar = () => {
   const { categorias } = useQuiosco();
 
